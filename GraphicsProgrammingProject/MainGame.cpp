@@ -1,6 +1,5 @@
 #include "MainGame.h"
 
-
 MainGame::MainGame()
 {
 }
@@ -47,9 +46,8 @@ void MainGame::gameLoop()
 
 void MainGame::drawGame()
 {
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
-
+	
+	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY);

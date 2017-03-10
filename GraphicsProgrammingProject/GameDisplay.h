@@ -14,11 +14,11 @@ public:
 	~GameDisplay();
 	void initDisplay();
 	void swapBuffer();
-	void ClearDisplay(float r, float g, float b, float a);
+	void clearDisplay(float r, float g, float b, float a);
 
 private:
 	void returnError(std::string error);
-	SDL_GLContext glContext; // Holds variable to hold the context
+	SDL_GLContext glContext; // Holds global variable for the context
 	SDL_Window* _gameWindow; // Holds the pointer to the game window
 	int _screenWidth;
 	int _screenHeight;

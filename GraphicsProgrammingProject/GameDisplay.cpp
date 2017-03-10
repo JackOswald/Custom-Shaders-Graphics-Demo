@@ -39,6 +39,7 @@ void GameDisplay::initDisplay()
 	}
 
 	GLenum error = glewInit();
+
 	if (error != GLEW_OK)
 	{
 		returnError("GLEW failed to initialise");
@@ -50,6 +51,12 @@ void GameDisplay::initDisplay()
 void GameDisplay::swapBuffer()
 {
 	SDL_GL_SwapWindow(_gameWindow); // Swap our buffers
+}
+
+void GameDisplay::clearDisplay(float r, float g, float b, float a)
+{
+	glClearColor(r, g, b, a);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
 }
 
 void GameDisplay::returnError(std::string error)
