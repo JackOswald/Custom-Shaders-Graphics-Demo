@@ -1,7 +1,11 @@
 #include "MainGame.h"
+#include <iostream>
+#include <string>
 
 MainGame::MainGame()
 {
+	_gameState = GameState::PLAY;
+	GameDisplay* _gameDisplay = new GameDisplay(); // New game display
 }
 
 
@@ -49,13 +53,17 @@ void MainGame::drawGame()
 	
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 
+	Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0)),
+		Vertex(glm::vec3(0, 0.5, 0)),
+		Vertex(glm::vec3(0.5, -0.5, 0)) };
+
+	Mesh mesh(vertices, sizeof(vertices) / sizeof(vertices[0])); //size calcuated by number of bytes of an array / no bytes of one element
+	Shader shader(".\\res\\shader"); //new shader
+	shader.Bind();
+	mesh.Draw();
+
 	// old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY);
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glVertex2f(0, 0);
-	glVertex2f(0, 500);
-	glVertex2f(500, 500);
 	glEnd();
 
 	_gameDisplay.swapBuffer();

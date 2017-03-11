@@ -20,7 +20,7 @@ public:
 	Mesh(Vertex* verts, unsigned int numVertices);
 	~Mesh();
 
-	void draw();
+	void Draw();
 protected:
 private:
 	enum

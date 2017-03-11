@@ -15,12 +15,14 @@ Mesh::Mesh(Vertex* verts, unsigned int numVertices)
 
 }
 
-
 Mesh::~Mesh()
 {
-	glDeleteVertexArrays(1, &vertexArrayObj);
+	glDeleteVertexArrays(1, &vertexArrayObj); // Delete our arrays
+}
+
+void Mesh::Draw()
+{
 	glBindVertexArray(vertexArrayObj);
 	glDrawArrays(GL_TRIANGLES, 0, drawCounts);
 	glBindVertexArray(0);
-
 }
