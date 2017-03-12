@@ -16,11 +16,15 @@ public:
 	void swapBuffer();
 	void clearDisplay(float r, float g, float b, float a);
 
+	float getHeight();
+	float getWidth();
+
 private:
 	void returnError(std::string error);
+
 	SDL_GLContext glContext; // Holds global variable for the context
 	SDL_Window* _gameWindow; // Holds the pointer to the game window
-	int _screenWidth;
-	int _screenHeight;
+	float _screenWidth;
+	float _screenHeight;
 };
 

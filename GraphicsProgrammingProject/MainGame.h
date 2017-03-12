@@ -5,6 +5,9 @@
 #include "GameDisplay.h"
 #include "Mesh.h"
 #include "Shader.h"
+#include "Texture.h"
+#include "Transform.h"
+#include "CameraHandler.h"
 
 enum class GameState{ PLAY, EXIT };
 
@@ -17,6 +20,8 @@ public:
 
 	void run();
 
+	GLfloat counter;
+
 private:
 	void initSystems();
 	void processInputs();
@@ -25,5 +30,10 @@ private:
 
 	GameDisplay _gameDisplay;
 	GameState _gameState;
+	Mesh mesh1;
+
+	CameraHandler _gameCamera;
+
+
 };
 

@@ -16,8 +16,8 @@ Texture::Texture(const std::string& fileName)
 	glBindTexture(GL_TEXTURE_2D, texture); // Binds the texture
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // Wraps the texture outside width
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // Wraps the texture outside the height
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // Linear filtering for minification(texture is smaller than the area)
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // Linear filtering for magnification(texture is larger than the area)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // Linear filtering for minification(texture is smaller than the area)
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // Linear filtering for magnification(texture is larger than the area)
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_TEXTURE_MAG_FILTER, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 	stbi_image_free(imageData);
 }

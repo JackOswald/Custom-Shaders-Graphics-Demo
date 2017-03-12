@@ -24,7 +24,7 @@ void GameDisplay::initDisplay()
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1); // Set up double buffer
 
-	_gameWindow = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, _screenWidth, _screenHeight, SDL_WINDOW_OPENGL); // Create the window
+	_gameWindow = SDL_CreateWindow("Game Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, (int)_screenWidth,(int) _screenHeight, SDL_WINDOW_OPENGL); // Create the window
 
 	if (_gameWindow == nullptr)
 	{
@@ -45,6 +45,8 @@ void GameDisplay::initDisplay()
 		returnError("GLEW failed to initialise");
 	}
 
+	glEnable(GL_DEPTH_TEST); // Enable z-buffering
+	glEnable(GL_CULL_FACE); // Enable backface culling 
 	glClearColor(0.0f, 1.0f, 1.0f, 1.0f);
 }
 
@@ -58,6 +60,17 @@ void GameDisplay::clearDisplay(float r, float g, float b, float a)
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear colour and depth buffer - set colour to colour defined in glClearColor
 }
+
+float GameDisplay::getHeight()
+{
+	return _screenHeight;
+}
+
+float GameDisplay::getWidth()
+{
+	return _screenWidth;
+}
+
 
 void GameDisplay::returnError(std::string error)
 {

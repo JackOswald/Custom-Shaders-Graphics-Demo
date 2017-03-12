@@ -6,15 +6,16 @@
 Shader::Shader(const std::string fileName)
 {
 	currentProgram = glCreateProgram(); // Create our shader program
+
 	currentShaders[0] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert"), GL_VERTEX_SHADER); // Create the vertex shader
 	currentShaders[1] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag"), GL_FRAGMENT_SHADER); // Create the fragment shader
 
-	for (unsigned int i = 0; i < NUM_SHADERS; i++)
+	for (int i = 0; i < NUM_SHADERS; i++)
 	{
 		glAttachShader(currentProgram, currentShaders[i]); // Adds all our shaders to the "currentShader"
 	}
 
-	glBindAttribLocation(currentProgram, 0, "position"); //
+	glBindAttribLocation(currentProgram, 0, "position");
 
 	glLinkProgram(currentProgram); // Creates executables that will run on the GPU shaders
 	ShaderErrorCheck(currentProgram, GL_LINK_STATUS, true, "Error: Shader program linking failed");
@@ -22,6 +23,8 @@ Shader::Shader(const std::string fileName)
 	glValidateProgram(currentProgram); // Checks the entire program is valid
 	ShaderErrorCheck(currentProgram, GL_VALIDATE_STATUS, true, "Error: Shader program not valid");
 
+	glBindAttribLocation(currentProgram, 1, "texCoord");
+	uniforms[TRANSFORM_U] = glGetUniformLocation(currentProgram, "transform");
 }
 Shader::~Shader()
 {
@@ -36,6 +39,14 @@ Shader::~Shader()
 void Shader::Bind()
 {
 	glUseProgram(currentProgram); //installs the program object specified by program as part of rendering state
+}
+
+void Shader::Update(const Transform& transform, const CameraHandler& camera)
+{
+	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
+	//glm::mat4 model = transform.GetModel();
+	glUniformMatrix4fv(uniforms[TRANSFORM_U], 1, GLU_FALSE, &mvp[0][0]);
+
 }
 
 std::string Shader::LoadShader(const std::string& fileName)
