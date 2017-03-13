@@ -15,7 +15,7 @@ Mesh::~Mesh()
 void Mesh::drawMesh()
 {
 	glBindVertexArray(vertexArrayObj);
-	glDrawArrays(GL_TRIANGLES, 0, drawCounts);
+	glDrawElements(GL_TRIANGLES, drawCounts, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 
@@ -70,9 +70,5 @@ void Mesh::createModel(const IndexedModel& model)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model.indices.size() * sizeof(model.indices[0]), &model.indices[0], GL_STATIC_DRAW); 
 
 	glBindVertexArray(0); 
-
-
-
-
 
 }
