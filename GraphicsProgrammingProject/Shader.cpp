@@ -7,8 +7,8 @@ Shader::Shader(const std::string fileName)
 {
 	currentProgram = glCreateProgram(); // Create our shader program
 
-	currentShaders[0] = CreateShader(LoadShader("C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.vert"), GL_VERTEX_SHADER); // Create the vertex shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert"
-	currentShaders[1] = CreateShader(LoadShader("C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.frag"), GL_FRAGMENT_SHADER); // Create the fragment shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag"
+	currentShaders[0] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert"), GL_VERTEX_SHADER); // Create the vertex shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.vert
+	currentShaders[1] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag"), GL_FRAGMENT_SHADER); // Create the fragment shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.frag
 
 	for (int i = 0; i < NUM_SHADERS; i++)
 	{

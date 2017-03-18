@@ -28,9 +28,29 @@ public:
 		position += forward * amt;
 	}
 
-	void MoveRight(float amt)
+	void MoveBack(float amt)
+	{
+		position -= forward * amt;
+	}
+
+	void MoveLeft(float amt)
 	{
 		position += glm::cross(up, forward) * amt;
+	}
+
+	void MoveRight(float amt)
+	{
+		position -= glm::cross(up, forward) * amt;
+	}
+
+	void MoveUp(float amt)
+	{
+		position += up * amt;
+	}
+
+	void MoveDown(float amt)
+	{
+		position -= up * amt;
 	}
 
 protected:

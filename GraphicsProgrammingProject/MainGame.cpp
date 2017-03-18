@@ -32,7 +32,7 @@ void MainGame::run()
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay();
-	mesh1.loadModel("C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\monkey3.obj"); //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\monkey3.obj"
+	mesh1.loadModel("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\Barrel_01.obj"); //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\monkey3.obj" "C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\monkey3.obj"
 	_gameCamera.createCamera(glm::vec3(0, 0, -5), 70.0f, (float)_gameDisplay.getWidth() / _gameDisplay.getHeight(), 0.01f, 1000.0f);
 }
 
@@ -47,6 +47,39 @@ void MainGame::processInputs()
 			case SDL_QUIT:
 				_gameState = GameState::EXIT;
 				break;
+
+			case SDL_KEYDOWN:
+				switch (event.key.keysym.sym)
+				{
+					case SDLK_d:
+						_gameCamera.MoveRight(1.0f);
+						break;
+	
+					case SDLK_a:
+						_gameCamera.MoveLeft(1.0f);
+						break;
+
+					case SDLK_w:
+						_gameCamera.MoveUp(1.0f);
+						break;
+
+					case SDLK_s:
+						_gameCamera.MoveDown(1.0f);
+						break;
+
+					case SDLK_q:
+						_gameCamera.MoveForward(1.0f);
+						break;
+
+					case SDLK_e:
+						_gameCamera.MoveBack(1.0f);
+						break;
+
+					case SDLK_ESCAPE:
+						_gameState = GameState::EXIT;
+						break;
+					}
+					break;
 
 		}
 	}
@@ -63,15 +96,16 @@ void MainGame::gameLoop()
 
 void MainGame::drawGame()
 {
-	_gameDisplay.clearDisplay(0.0f, 1.0f, 1.0f, 1.0f);
+	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 
 	//_transform.SetPosition(glm::vec3(sinf(counter), 0.0, 0.0));
 	//_transform.SetRotation(glm::vec3(0.0, 0.0, counter * 5));
-	_transform.SetRotation(glm::vec3(0.0, 0.0, 0.0));
+	_transform.SetScale(glm::vec3(0.5, 0.5, 0.5));
 	//_transform.SetScale(glm::vec3(sinf(counter), sinf(counter), sinf(counter)));
-	Shader shader("C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res
-	Texture texture("C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\Water.jpg"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\bricks.jpg
+	Shader shader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res
+	Texture texture("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\barrel.jpg"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\bricks.jpg C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\Water.jpg
 	
+
 	shader.Bind();
 	shader.Update(_transform, _gameCamera);
 	texture.Bind(0);
