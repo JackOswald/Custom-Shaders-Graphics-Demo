@@ -81,13 +81,7 @@
     <Object Include="..\res\monkey3.obj">
       <Filter>Resource Files</Filter>
     </Object>
-    <Object Include="..\res\AKM_LP_Final.obj">
-      <Filter>Resource Files</Filter>
-    </Object>
     <Object Include="..\res\Barrel_01.obj">
-      <Filter>Resource Files</Filter>
-    </Object>
-    <Object Include="..\res\walls.obj">
       <Filter>Resource Files</Filter>
     </Object>
   </ItemGroup>

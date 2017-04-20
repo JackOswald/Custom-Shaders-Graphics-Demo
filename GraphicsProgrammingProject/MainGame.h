@@ -30,7 +30,9 @@ private:
 
 	GameDisplay _gameDisplay;
 	GameState _gameState;
-	Mesh mesh1;
+	Mesh model1;
+	Mesh model2;
+	Mesh model3;
 
 	CameraHandler _gameCamera;
 
