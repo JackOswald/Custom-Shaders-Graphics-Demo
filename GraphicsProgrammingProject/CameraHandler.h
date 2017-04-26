@@ -6,6 +6,12 @@
 struct CameraHandler
 {
 public:
+
+	glm::mat4 projection;
+	glm::vec3 position;
+	glm::vec3 forward;
+	glm::vec3 up;
+
 	CameraHandler()
 	{
 	}
@@ -55,8 +61,5 @@ public:
 
 protected:
 private:
-	glm::mat4 projection;
-	glm::vec3 position;
-	glm::vec3 forward;
-	glm::vec3 up;
+
 };

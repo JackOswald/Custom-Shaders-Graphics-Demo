@@ -19,11 +19,13 @@ public:
 	float getHeight();
 	float getWidth();
 
+	SDL_Window* _gameWindow; // Holds the pointer to the game window
+
 private:
 	void returnError(std::string error);
 
 	SDL_GLContext glContext; // Holds global variable for the context
-	SDL_Window* _gameWindow; // Holds the pointer to the game window
+
 	float _screenWidth;
 	float _screenHeight;
 };

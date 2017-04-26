@@ -31,6 +31,52 @@ void MainGame::run()
 	gameLoop();
 }
 
+void MainGame::MouseMovement()
+{
+	GLfloat currentFrame = SDL_GetTicks();
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+
+	std::cout << "Current frame = " << currentFrame << endl << "Current delta time = " << deltaTime << endl;
+
+	cameraSpeed = 2.0f * deltaTime;
+
+	//Get current mouse position on the screen
+	int xpos, ypos;
+	SDL_GetGlobalMouseState(&xpos, &ypos);
+
+	GLfloat xOffset = xpos - lastX;
+	GLfloat yOffset = lastY - ypos;
+	lastX = xpos;
+	lastY = ypos;
+
+	GLfloat sens = 0.15f;
+	xOffset *= sens;
+	yOffset *= sens;
+
+	yaw += xOffset;
+	pitch += yOffset;
+
+	if (pitch > 89.0f)
+	{
+		pitch = 89.0f;
+	}
+	if (pitch < -89.0f)
+	{
+		pitch = -89.0f;
+	}
+	//std::cout << "Current pitch = " << pitch << endl << "Current yaw = " << yaw << endl;
+	glm::vec3 front;
+	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	_gameCamera.forward = normalize(front);
+
+	//SDL_WarpMouseInWindow(_gameDisplay._gameWindow, _gameDisplay.getWidth() / 2, _gameDisplay.getHeight() / 2);
+
+	
+}
+
 void MainGame::initSystems()
 {
 	_gameDisplay.initDisplay();
@@ -60,6 +106,10 @@ void MainGame::processInputs()
 		{
 			case SDL_QUIT:
 				_gameState = GameState::EXIT;
+				break;
+
+			case SDL_MOUSEMOTION:
+				MouseMovement();
 				break;
 
 			case SDL_KEYDOWN:
@@ -93,8 +143,8 @@ void MainGame::processInputs()
 						_gameState = GameState::EXIT;
 						break;
 					}
-					break;
-
+			default:
+				break;
 		}
 	}
 }
@@ -107,9 +157,7 @@ void MainGame::drawGame()
 	// Barrel model
 
 	transform1.SetPosition(glm::vec3(2.0, 0.0, 0.0));
-	//_transform.SetRotation(glm::vec3(0.0, 0.0, counter * 5));
 	transform1.SetScale(glm::vec3(0.50, 0.50, 0.50));
-	//_transform.SetScale(glm::vec3(sinf(counter), sinf(counter), sinf(counter)));
 	Shader shader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res
 	Texture texture("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\barrel3.jpg"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\bricks.jpg C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\Water.jpg
 	

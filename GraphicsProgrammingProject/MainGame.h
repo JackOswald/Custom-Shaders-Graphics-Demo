@@ -19,6 +19,7 @@ public:
 	~MainGame();
 
 	void run();
+	void MouseMovement();
 
 	GLfloat counter;
 
@@ -27,6 +28,15 @@ private:
 	void processInputs();
 	void gameLoop();
 	void drawGame();
+
+	GLfloat deltaTime = 0.0f;
+	GLfloat	lastFrame = 0.0f;
+	GLfloat cameraSpeed = 0.0f;
+	GLfloat	yaw = 20.0f;
+	GLfloat pitch = 0.0f;
+	GLfloat fov = glm::radians(45.0f);
+	GLfloat lastX = 512;
+	GLfloat lastY = 384;
 
 	GameDisplay _gameDisplay;
 	GameState _gameState;
