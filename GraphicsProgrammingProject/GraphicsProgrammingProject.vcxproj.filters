@@ -76,5 +76,11 @@
     <None Include="..\res\shader.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="..\res\lightShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\res\lightShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

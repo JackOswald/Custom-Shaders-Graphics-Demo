@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-
 unsigned int indices[] = { 0, 1, 2 };
 Transform transform1;
 Transform transform2;
@@ -39,9 +38,7 @@ void MainGame::mouseMovement()
 	deltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
 
-	//std::cout << "Current frame = " << currentFrame << endl << "Current delta time = " << deltaTime << endl;
-
-	//cameraSpeed = 2.0f * deltaTime;
+	cameraSpeed = 2.0f * deltaTime;
 
 	// Get current mouse position on the screen
 	int xpos, ypos;
@@ -73,10 +70,6 @@ void MainGame::mouseMovement()
 	front.y = sin(glm::radians(pitch));
 	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
 	_gameCamera.forward = normalize(front);
-
-	//SDL_WarpMouseInWindow(_gameDisplay._gameWindow, _gameDisplay.getWidth() / 2, _gameDisplay.getHeight() / 2);
-
-	
 }
 
 void MainGame::initSystems()
@@ -103,6 +96,7 @@ void MainGame::initSystems()
 	transform3.SetScale(glm::vec3(0.65, 0.65, 0.65));
 	transform3.SetRotation(glm::vec3(0.0f, 0.0f, 0.0f));
 
+	// Create the camera
 	_gameCamera.createCamera(glm::vec3(0.0f, 2.0f, 1.0f), 70.0f, (float)_gameDisplay.getWidth() / _gameDisplay.getHeight(), 0.01f, 1000.0f); // Create the game camera
 }
 
@@ -172,7 +166,7 @@ void MainGame::processInputs()
 
 void MainGame::drawGame()
 {
-	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
+	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f); // Clear the game display
 
 	// Barrel model
 	Shader shader(RES_FOLDER, "shader.vert", "shader.frag");
