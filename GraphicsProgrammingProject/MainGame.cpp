@@ -2,10 +2,6 @@
 #include <iostream>
 #include <string>
 
-Vertex vertices[] = { Vertex(glm::vec3(-0.5, -0.5, 0), glm::vec2(0.0, 0.0)),
-Vertex(glm::vec3(0, 0.5, 0), glm::vec2(0.5, 1.0)),
-Vertex(glm::vec3(0.5, -0.5, 0), glm::vec2(1.0, 0.0))
-};
 
 unsigned int indices[] = { 0, 1, 2 };
 Transform transform1;
@@ -166,14 +162,6 @@ void MainGame::processInputs()
 					case SDLK_ESCAPE:
 						_gameState = GameState::EXIT;
 						break;
-					case SDLK_1:
-						transform1.SetScale(glm::vec3(0.75, 0.75, 0.75));
-						transform2.SetScale(glm::vec3(0.75, 0.75, 0.75));
-						transform3.SetScale(glm::vec3(0.75, 0.75, 0.75));
-						break;
-					case SDLK_2:
-						transform1.SetScale(glm::vec3(0.50, 0.50, 0.50));
-						break;
 					}
 			default:
 				break;
@@ -188,28 +176,31 @@ void MainGame::drawGame()
 
 	// Barrel model
 	Shader shader(RES_FOLDER, "shader.vert", "shader.frag");
+	Shader lightShader(RES_FOLDER, "lightShader.vert", "lightShader.frag");
 	Texture texture(RES_FOLDER + "barrel3.jpg");
 	
-	shader.Bind();
-	shader.Update(transform1, _gameCamera);
+	lightShader.Bind();
+	lightShader.Update(transform1, _gameCamera);
 	texture.Bind(0);
 	model1.drawMesh();
 
 	// Stone model
 	Shader shader2(RES_FOLDER, "shader.vert", "shader.frag");
+	Shader lightShader2(RES_FOLDER, "lightShader.vert", "lightShader.frag");
 	Texture texture2(RES_FOLDER + "stone2.jpg");
 
-	shader2.Bind();
-	shader2.Update(transform2, _gameCamera);
+	lightShader2.Bind();
+	lightShader2.Update(transform2, _gameCamera);
 	texture2.Bind(0);
 	model2.drawMesh();
 
 	// Crate model
 	Shader shader3(RES_FOLDER, "shader.vert", "shader.frag");
+	Shader lightShader3(RES_FOLDER, "lightShader.vert", "lightShader.frag");
 	Texture texture3(RES_FOLDER + "crateTexture.jpg");
 
-	shader3.Bind();
-	shader3.Update(transform3, _gameCamera);
+	lightShader3.Bind();
+	lightShader3.Update(transform3, _gameCamera);
 	texture3.Bind(0);
 	model3.drawMesh();
 

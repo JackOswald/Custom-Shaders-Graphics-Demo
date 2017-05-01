@@ -7,7 +7,7 @@
 struct Vertex
 {
 public:
-	Vertex(const glm::vec3& pos, glm::vec2& textCoord)
+	Vertex(const glm::vec3& pos, glm::vec2& textCoord, glm::vec3 normal)
 	{
 		this->pos = pos;
 		this->textCoord = textCoord;

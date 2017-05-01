@@ -1,30 +1,12 @@
-﻿Build started 01/05/2017 03:15:12.
-     1>Project "E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\GraphicsProgrammingProject\GraphicsProgrammingProject.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 01/05/2017 18:16:17.
+     1>Project "E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\GraphicsProgrammingProject\GraphicsProgrammingProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameDisplay.cpp Main.cpp MainGame.cpp Mesh.cpp obj_loader.cpp Shader.cpp Texture.cpp
-         Texture.cpp
-         Shader.cpp
-         obj_loader.cpp
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\obj_loader.cpp(378): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Main.cpp MainGame.cpp Mesh.cpp
+         Main.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
          Mesh.cpp
          MainGame.cpp
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\maingame.cpp(42): warning C4244: 'initializing' : conversion from 'Uint32' to 'GLfloat', possible loss of data
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\maingame.cpp(56): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\maingame.cpp(57): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\maingame.cpp(90): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         Main.cpp
-         GameDisplay.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt stb_image.c
-         stb_image.c
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\stb_image.c(300): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\stb_image.c(362): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\stb_image.c(400): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
-     1>e:\jack\documents\uni work\3rd year\graphics programming\graphicsprogrammingcoursework\graphicsprogrammingproject\stb_image.c(4293): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\Debug\GraphicsProgrammingProject.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\Debug\GraphicsProgrammingProject.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\Debug\GraphicsProgrammingProject.lib" /MACHINE:X86 Debug\GameDisplay.obj
          Debug\Main.obj
@@ -35,8 +17,8 @@
          Debug\stb_image.obj
          Debug\Texture.obj
          GraphicsProgrammingProject.vcxproj -> E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\Debug\GraphicsProgrammingProject.exe
-     1>Done Building Project "E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\GraphicsProgrammingProject\GraphicsProgrammingProject.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "E:\Jack\Documents\Uni Work\3rd Year\Graphics Programming\GraphicsProgrammingCoursework\GraphicsProgrammingProject\GraphicsProgrammingProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.80
+Time Elapsed 00:00:00.72

@@ -17,6 +17,7 @@ Shader::Shader(std::string res, std::string vert, std::string frag)
 
 	glBindAttribLocation(currentProgram, 0, "position");
 	glBindAttribLocation(currentProgram, 1, "textCoord");
+	glBindAttribLocation(currentProgram, 2, "normal");
 
 	glLinkProgram(currentProgram); // Creates executables that will run on the GPU shaders
 	ShaderErrorCheck(currentProgram, GL_LINK_STATUS, true, "Error: Shader program linking failed");
