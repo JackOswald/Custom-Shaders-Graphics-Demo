@@ -3,12 +3,12 @@
 #include <fstream>
 
 
-Shader::Shader(const std::string fileName)
+Shader::Shader(std::string res, std::string vert, std::string frag)
 {
 	currentProgram = glCreateProgram(); // Create our shader program
 
-	currentShaders[0] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert"), GL_VERTEX_SHADER); // Create the vertex shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.vert
-	currentShaders[1] = CreateShader(LoadShader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag"), GL_FRAGMENT_SHADER); // Create the fragment shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.frag
+	currentShaders[0] = CreateShader(LoadShader(res + vert), GL_VERTEX_SHADER); // Create the vertex shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.vert" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.vert
+	currentShaders[1] = CreateShader(LoadShader(res + frag), GL_FRAGMENT_SHADER); // Create the fragment shader //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\shader.frag" C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\shader.frag
 
 	for (int i = 0; i < NUM_SHADERS; i++)
 	{
@@ -16,7 +16,7 @@ Shader::Shader(const std::string fileName)
 	}
 
 	glBindAttribLocation(currentProgram, 0, "position");
-	glBindAttribLocation(currentProgram, 1, "texCoord");
+	glBindAttribLocation(currentProgram, 1, "textCoord");
 
 	glLinkProgram(currentProgram); // Creates executables that will run on the GPU shaders
 	ShaderErrorCheck(currentProgram, GL_LINK_STATUS, true, "Error: Shader program linking failed");
@@ -41,7 +41,7 @@ void Shader::Bind()
 	glUseProgram(currentProgram); //installs the program object specified by program as part of rendering state
 }
 
-void Shader::Update(const Transform& transform, const CameraHandler& camera)
+void Shader::Update(const Transform& transform, const CameraHandler& camera) 
 {
 	glm::mat4 mvp = camera.GetViewProjection() * transform.GetModel();
 	//glm::mat4 model = transform.GetModel();

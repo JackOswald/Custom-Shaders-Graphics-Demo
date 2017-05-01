@@ -1,6 +1,6 @@
-#version 120
-
-varying vec2 texCoord0;
+#version 330 core
+//120
+in vec2 texCoord0;
 
 uniform sampler2D diffuse;
 

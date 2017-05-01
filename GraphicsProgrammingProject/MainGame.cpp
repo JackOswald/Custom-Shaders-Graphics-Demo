@@ -12,6 +12,8 @@ Transform transform1;
 Transform transform2;
 Transform transform3;
 
+std::string RES_FOLDER = "E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\";
+
 MainGame::MainGame()
 {
 	_gameState = GameState::PLAY;
@@ -23,6 +25,7 @@ MainGame::MainGame()
 
 MainGame::~MainGame()
 {
+
 }
 
 void MainGame::run()
@@ -31,17 +34,20 @@ void MainGame::run()
 	gameLoop();
 }
 
-void MainGame::MouseMovement()
+void MainGame::mouseMovement()
 {
+	// Code taken and edited from: https://learnopengl.com/#!Getting-started/Camera (was also used in Games Programming 2 group project)
+	
+	// Calculate the time between frames to obtain deltaTime
 	GLfloat currentFrame = SDL_GetTicks();
 	deltaTime = currentFrame - lastFrame;
 	lastFrame = currentFrame;
 
-	std::cout << "Current frame = " << currentFrame << endl << "Current delta time = " << deltaTime << endl;
+	//std::cout << "Current frame = " << currentFrame << endl << "Current delta time = " << deltaTime << endl;
 
-	cameraSpeed = 2.0f * deltaTime;
+	//cameraSpeed = 2.0f * deltaTime;
 
-	//Get current mouse position on the screen
+	// Get current mouse position on the screen
 	int xpos, ypos;
 	SDL_GetGlobalMouseState(&xpos, &ypos);
 
@@ -50,7 +56,7 @@ void MainGame::MouseMovement()
 	lastX = xpos;
 	lastY = ypos;
 
-	GLfloat sens = 0.15f;
+	GLfloat sens = 0.50f;
 	xOffset *= sens;
 	yOffset *= sens;
 
@@ -65,7 +71,7 @@ void MainGame::MouseMovement()
 	{
 		pitch = -89.0f;
 	}
-	//std::cout << "Current pitch = " << pitch << endl << "Current yaw = " << yaw << endl;
+
 	glm::vec3 front;
 	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 	front.y = sin(glm::radians(pitch));
@@ -79,11 +85,29 @@ void MainGame::MouseMovement()
 
 void MainGame::initSystems()
 {
-	_gameDisplay.initDisplay();
-	model1.loadModel("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\Barrel_01.obj"); //"E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\monkey3.obj" "C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\monkey3.obj"
-	model2.loadModel("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\stone.obj");
-	model3.loadModel("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\crate.obj");
-	_gameCamera.createCamera(glm::vec3(0, 0, -5), 70.0f, (float)_gameDisplay.getWidth() / _gameDisplay.getHeight(), 0.01f, 1000.0f);
+	_gameDisplay.initDisplay(); // Initialise the game display
+
+	SDL_WarpMouseInWindow(_gameDisplay._gameWindow, _gameDisplay.getWidth() / 2, _gameDisplay.getHeight() / 2);
+
+	// Load the models
+	model1.loadModel(RES_FOLDER + "Barrel_01.obj");
+	model2.loadModel(RES_FOLDER + "stone.obj");
+	model3.loadModel(RES_FOLDER + "crate.obj");
+
+	// Set the models transforms attributes (position, scale, rotation)
+	transform1.SetPosition(glm::vec3(2.0, 0.0, 0.0));
+	transform1.SetScale(glm::vec3(0.50, 0.50, 0.50));
+	transform1.SetRotation(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	transform2.SetPosition(glm::vec3(-2.0, 0.0, 0.0));
+	transform2.SetScale(glm::vec3(0.60, 0.60, 0.60));
+	transform2.SetRotation(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	transform3.SetPosition(glm::vec3(-0.6, 0.0, -0.5));
+	transform3.SetScale(glm::vec3(0.65, 0.65, 0.65));
+	transform3.SetRotation(glm::vec3(0.0f, 0.0f, 0.0f));
+
+	_gameCamera.createCamera(glm::vec3(0.0f, 2.0f, 1.0f), 70.0f, (float)_gameDisplay.getWidth() / _gameDisplay.getHeight(), 0.01f, 1000.0f); // Create the game camera
 }
 
 
@@ -100,7 +124,7 @@ void MainGame::processInputs()
 {
 	SDL_Event event;
 
-	while (SDL_PollEvent(&event)) // get and process events
+	while (SDL_PollEvent(&event)) // Get and process events
 	{
 		switch (event.type)
 		{
@@ -109,7 +133,7 @@ void MainGame::processInputs()
 				break;
 
 			case SDL_MOUSEMOTION:
-				MouseMovement();
+				mouseMovement();
 				break;
 
 			case SDL_KEYDOWN:
@@ -142,6 +166,14 @@ void MainGame::processInputs()
 					case SDLK_ESCAPE:
 						_gameState = GameState::EXIT;
 						break;
+					case SDLK_1:
+						transform1.SetScale(glm::vec3(0.75, 0.75, 0.75));
+						transform2.SetScale(glm::vec3(0.75, 0.75, 0.75));
+						transform3.SetScale(glm::vec3(0.75, 0.75, 0.75));
+						break;
+					case SDLK_2:
+						transform1.SetScale(glm::vec3(0.50, 0.50, 0.50));
+						break;
 					}
 			default:
 				break;
@@ -155,44 +187,35 @@ void MainGame::drawGame()
 	_gameDisplay.clearDisplay(0.0f, 0.0f, 0.0f, 1.0f);
 
 	// Barrel model
-
-	transform1.SetPosition(glm::vec3(2.0, 0.0, 0.0));
-	transform1.SetScale(glm::vec3(0.50, 0.50, 0.50));
-	Shader shader("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res
-	Texture texture("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\barrel3.jpg"); //E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\bricks.jpg C:\\Users\\JOSWAL200\\Desktop\\GraphicsProgrammingCoursework\\res\\Water.jpg
+	Shader shader(RES_FOLDER, "shader.vert", "shader.frag");
+	Texture texture(RES_FOLDER + "barrel3.jpg");
 	
 	shader.Bind();
 	shader.Update(transform1, _gameCamera);
 	texture.Bind(0);
 	model1.drawMesh();
 
-	counter = counter + 0.01f;
-
 	// Stone model
+	Shader shader2(RES_FOLDER, "shader.vert", "shader.frag");
+	Texture texture2(RES_FOLDER + "stone2.jpg");
 
-	transform2.SetPosition(glm::vec3(-2.0, 0.0, 0.0));
-	transform2.SetScale(glm::vec3(0.60, 0.60, 0.60));
-
-	Shader shader2("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res");
-	Texture texture2("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\stone2.jpg");
 	shader2.Bind();
 	shader2.Update(transform2, _gameCamera);
 	texture2.Bind(0);
 	model2.drawMesh();
 
 	// Crate model
+	Shader shader3(RES_FOLDER, "shader.vert", "shader.frag");
+	Texture texture3(RES_FOLDER + "crateTexture.jpg");
 
-	transform3.SetPosition(glm::vec3(-0.6, 0.0, -0.5));
-	transform3.SetScale(glm::vec3(0.65, 0.65, 0.65));
-
-	Shader shader3("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res");
-	Texture texture3("E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\crateTexture.jpg");
 	shader3.Bind();
 	shader3.Update(transform3, _gameCamera);
 	texture3.Bind(0);
 	model3.drawMesh();
 
-	// old code for testing only 
+	counter = counter + 0.01f;
+
+	// Old code for testing only 
 	glEnableClientState(GL_COLOR_ARRAY);
 	glEnd();
 

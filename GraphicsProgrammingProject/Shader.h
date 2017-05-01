@@ -7,7 +7,7 @@
 class Shader
 {
 public:
-	Shader(const std::string fileName);
+	Shader(std::string res, std::string vert, std::string frag);
 	~Shader();
 
 	void Bind(); // Binds the shaders to our GPU

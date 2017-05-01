@@ -19,7 +19,7 @@ public:
 	~MainGame();
 
 	void run();
-	void MouseMovement();
+	void mouseMovement();
 
 	GLfloat counter;
 
@@ -32,7 +32,7 @@ private:
 	GLfloat deltaTime = 0.0f;
 	GLfloat	lastFrame = 0.0f;
 	GLfloat cameraSpeed = 0.0f;
-	GLfloat	yaw = 20.0f;
+	GLfloat	yaw = 0.0f;
 	GLfloat pitch = 0.0f;
 	GLfloat fov = glm::radians(45.0f);
 	GLfloat lastX = 512;
@@ -45,6 +45,8 @@ private:
 	Mesh model3;
 
 	CameraHandler _gameCamera;
+
+	Shader* _gameLight;
 
 
 };
