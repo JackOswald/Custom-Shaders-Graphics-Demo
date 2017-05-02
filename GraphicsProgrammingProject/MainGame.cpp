@@ -7,7 +7,7 @@ Transform transform1;
 Transform transform2;
 Transform transform3;
 
-std::string RES_FOLDER = "E:\\Jack\\Documents\\Uni Work\\3rd Year\\Graphics Programming\\GraphicsProgrammingCoursework\\res\\";
+std::string RES_FOLDER = "..\\res\\";
 
 MainGame::MainGame()
 {
