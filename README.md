@@ -1,6 +1,6 @@
 # Graphics Programming Coursework
 
-A graphics demo created in Visual Studio using C++ and OpenGL API.
+A graphics demo created in Visual Studio using C++ and OpenGL API for my Graphics Programming coursework.
 
 # What I Learned
 
