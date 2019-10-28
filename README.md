@@ -1,6 +1,6 @@
-# Graphics Programming Coursework
+# Custom Shaders Graphics Demo
 
-A graphics demo created in Visual Studio using C++ and OpenGL API for my Graphics Programming coursework.
+A graphics demo created in Visual Studio using C++ and OpenGL API for my Graphics Programming coursework. The demo consists of a scene with customs shaders for lighting and textures. 
 
 # What I Learned
 
